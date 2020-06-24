@@ -20,6 +20,8 @@ http.createServer(async function (req, res) {
     }
     else if(req.url==='/addname'){
             fs.readFile('add.html', function(err, data) {
+            const queryObject = url.parse(req.url,true).query;
+            console.log(queryObject);
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write(data);
             return res.end();
@@ -35,18 +37,18 @@ http.createServer(async function (req, res) {
     }
     else if(req.url==='/create'){
         
-        const queryObject = url.parse(req.url,true).query;
-        console.log(queryObject);
+//         const queryObject = url.parse(req.url,true).query;
+//         console.log(queryObject);
         
-        // let temp = new smp ({
-        //     _id: new mongoose.Types.ObjectId(),
-        //     firstName: 'Abc',
-        //     lastName: 'Xyz'
-        // });
-        // temp.save(function(err) {
-        //     if (err) throw err;
-        //     console.log('Data successfully saved.');
-        // });
+        let temp = new smp ({
+            _id: new mongoose.Types.ObjectId(),
+            firstName: 'Abc',
+            lastName: 'Xyz'
+        });
+        temp.save(function(err) {
+            if (err) throw err;
+            console.log('Data successfully saved.');
+        });
         
         res.writeHeader(200, {"Content-Type": "text/html"});  
         res.write(`<h1>User created</h1>`);  
